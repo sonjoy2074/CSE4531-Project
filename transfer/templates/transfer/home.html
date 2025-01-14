@@ -1,0 +1,19 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% static 'transfer/img/doctorHome.png' %}" class="img-fluid"
+                alt="Image Transfer">
+        </div>
+        <div class="col-md-6 mt-5">
+            <h1>Image Transfer</h1>
+            <p>Transfer your images securely</p>
+            <a href="{% url 'transfer:sign_up' %}" class="btn btn-primary">Get Started</a>
+        </div>
+    </div>
+    <br>
+    <hr>
+</div>
+{% endblock %}

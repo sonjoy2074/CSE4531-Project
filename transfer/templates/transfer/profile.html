@@ -1,0 +1,47 @@
+<!-- <h1>Welcome, {{ user.username }}</h1>
+{% if images %}
+    <h2>Your Images</h2>
+    <ul>
+        {% for image in images %}
+            <li>{{ image.sender.username }} sent you an image</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No images received yet.</p>
+{% endif %}
+<h2>Send an Image</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send Image</button>
+</form>
+{% if error %}
+    <p style="color:red;">{{ error }}</p>
+{% endif %} -->
+{% load custom_filters %}
+<h1>Welcome, {{ user.username }}</h1>
+{% if images %}
+    <h2>Your Images</h2>
+    <ul>
+        {% for item in images %}
+            <li>
+                {{ item.sender }} sent you an image:
+                <img src="data:image/jpeg;base64,{{ item.image|b64encode }}" alt="Image from {{ item.sender }}" style="max-width: 200px; max-height: 200px;">
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No images received yet.</p>
+{% endif %}
+
+<h2>Send an Image</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send Image</button>
+</form>
+{% if error %}
+    <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+
