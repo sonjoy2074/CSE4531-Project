@@ -11,6 +11,7 @@ class EncryptedImage(models.Model):
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_images')
     encrypted_image = models.BinaryField()
     encrypted_key = models.BinaryField()
+    prediction = models.CharField(max_length=255, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def decrypt_image(self, private_key_pem):
