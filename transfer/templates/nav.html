@@ -9,6 +9,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
     
     <title>Navbar</title>
+    <style>
+      body {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+          margin: 0;
+      }
+  
+      .container {
+          flex: 1;
+      }
+  
+      footer {
+          background-color: rgba(0, 0, 0, 0.2);
+          text-align: center;
+          padding: 1px 0;
+      }
+  </style>
+  
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,7 +42,7 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'transfer:home' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="{% url 'transfer:profile' %}">Profile</a>
               </li>
             </ul>
           </div>
@@ -34,5 +53,13 @@
         <!-- Content goes here -->
         {% endblock %}
     </div>
+
+    <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            &copy; 2025 SecureNet. All rights reserved.
+            <a class="text-dark" href="#">Privacy Policy</a> | 
+            <a class="text-dark" href="#">Terms of Service</a>
+        </div>
+    </footer>
 </body>
 </html>

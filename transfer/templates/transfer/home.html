@@ -1,19 +1,100 @@
 {% extends 'nav.html' %}
 {% load static %}
 {% block body_block %}
-<div class="container">
-    <div class="row">
+<div class="container mt-5">
+    <!-- Hero Section -->
+    <div class="row align-items-center">
         <div class="col-md-6">
-            <img src="{% static 'transfer/img/doctorHome.png' %}" class="img-fluid"
-                alt="Image Transfer">
+            <img src="{% static 'transfer/img/doctorHome.png' %}" class="img-fluid rounded shadow" alt="Image Transfer">
         </div>
-        <div class="col-md-6 mt-5">
-            <h1>Image Transfer</h1>
-            <p>Transfer your images securely</p>
-            <a href="{% url 'transfer:sign_up' %}" class="btn btn-primary">Get Started</a>
+        <div class="col-md-6 mt-5 text-center text-md-start">
+            <h1 class="display-4 fw-bold text-primary">Secure Image Transfer</h1>
+            <p class="lead">Easily transfer and analyze images with top-notch encryption and AI predictions. Stay secure and efficient with our advanced system.</p>
+            <a href="{% url 'transfer:sign_up' %}" class="btn btn-lg btn-primary px-4 mt-3">Get Started</a>
         </div>
     </div>
-    <br>
-    <hr>
+    <hr class="my-5">
+
+    <!-- Features Section -->
+    <div class="row text-center py-5">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <img src="{% static 'transfer/img/encryption.png' %}" alt="Encryption" class="img-fluid mb-3" style="max-height: 150px;">
+                    <h5 class="card-title fw-bold">Advanced Encryption</h5>
+                    <p class="card-text">Your images are encrypted for secure transfers and stored safely in our system.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <img src="{% static 'transfer/img/ai_prediction.png' %}" alt="AI Prediction" class="img-fluid mb-3" style="max-height: 150px;">
+                    <h5 class="card-title fw-bold">AI-Powered Predictions</h5>
+                    <p class="card-text">Leverage our AI models to predict insights from uploaded images.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <img src="{% static 'transfer/img/user_friendly.png' %}" alt="User-Friendly" class="img-fluid mb-3" style="max-height: 150px;">
+                    <h5 class="card-title fw-bold">Federated Learning</h5>
+                    <p class="card-text">Fedrated Learning is a </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div class="py-5">
+        <h2 class="text-center fw-bold mb-4">Resources</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Encryption Basics</h5>
+                        <p class="card-text">Learn about how encryption ensures secure communication and data transfer.</p>
+                        <a href="https://en.wikipedia.org/wiki/Encryption" target="_blank" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">AI in Image Analysis</h5>
+                        <p class="card-text">Explore how AI and deep learning are revolutionizing image analysis.</p>
+                        <a href="https://towardsdatascience.com/image-analysis-with-ai" target="_blank" class="btn btn-outline-primary btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Federated Learning</h5>
+                        <p class="card-text">Federated learning is a decentralized approach to training machine learning models</p>
+                        <a href="https://www.v7labs.com/blog/federated-learning-guide" target="_blank" class="btn btn-outline-primary btn-sm">Visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Custom Styles -->
+<style>
+    .card img {
+        max-height: 150px;
+        object-fit: contain;
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+</style>
 {% endblock %}

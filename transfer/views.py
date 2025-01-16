@@ -51,7 +51,8 @@ def profile(request):
             images.append({
                 'id': image.id,  # Include the image ID
                 'sender': image.sender.username,
-                'image': decrypted_image
+                'image': decrypted_image,
+                'prediction': image.prediction,
             })
         except Exception as e:
             print(f"Decryption failed: {e}")
