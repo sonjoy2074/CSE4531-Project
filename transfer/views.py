@@ -19,9 +19,16 @@ def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            full_name = form.cleaned_data['full_name']
+            # Split full name into first and last names
+            parts = full_name.split(' ', 1)
+            user.first_name = parts[0]
+            user.last_name = parts[1] if len(parts) > 1 else ''
+            user.save()
             profile = Profile.objects.create(user=user)
-            profile.generate_key_pair()  # Generate public/private keys
+            profile.user_type = form.cleaned_data['user_type']
+            profile.generate_key_pair()
             profile.save()
             login(request, user)
             return redirect('transfer:profile')
@@ -59,7 +66,7 @@ def profile(request):
             continue
 
     if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
+        form = ImageUploadForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             image = request.FILES['image']
             receiver_username = form.cleaned_data['receiver']
@@ -95,7 +102,7 @@ def profile(request):
                     'error': 'Receiver not found'
                 })
     else:
-        form = ImageUploadForm()
+        form = ImageUploadForm(user=request.user)
 
     return render(request, 'transfer/profile.html', {'images': images, 'form': form})
 
@@ -121,6 +128,8 @@ transform = T.Compose([
 classes = ['glioma', 'meningioma', 'notumor', 'pituitary']  # Replace with actual class names
 @login_required
 def predict_image_view(request):
+    if request.user.profile.user_type != 'doctor':
+        return JsonResponse({'error': 'Permission denied'}, status=403)
     if request.method == 'POST':
         image_id = request.POST.get('image_id')
         if not image_id:

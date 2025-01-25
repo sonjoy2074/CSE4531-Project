@@ -34,9 +34,14 @@ class EncryptedImage(models.Model):
 
 
 class Profile(models.Model):
+    USER_TYPE_CHOICES = [
+        ('doctor', 'Doctor'),
+        ('patient', 'Patient'),
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     public_key = models.TextField(blank=True, null=True)
     private_key = models.TextField(blank=True, null=True)
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='patient')
 
     def generate_key_pair(self):
         private_key = rsa.generate_private_key(

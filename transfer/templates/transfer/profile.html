@@ -23,11 +23,13 @@
                     </div>
                     <div>
                         <p class="mb-1"><strong>{{ item.sender }}</strong> sent you an image.</p>
+                        {% if user.profile.user_type == 'doctor' %}
                         <form method="post" action="{% url 'transfer:predict_image' %}" style="display:inline;">
                             {% csrf_token %}
                             <input type="hidden" name="image_id" value="{{ item.id }}">
                             <button type="submit" class="btn btn-sm btn-secondary">Predict</button>
                         </form>
+                        {% endif %}
                         {% if item.prediction %}
                         <p class="mt-2 mb-0"><span class="badge bg-success">Prediction:</span> {{ item.prediction }}</p>
                         {% endif %}
