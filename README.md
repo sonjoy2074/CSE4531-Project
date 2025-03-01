@@ -24,7 +24,7 @@ We used the [**Brain Tumor MRI Dataset**](https://www.kaggle.com/datasets/masoud
 - **Format:** Image files (JPEG/PNG)
 
 ## Experimental Design
-
+![image_alt](https://github.com/sonjoy2074/CSE4531-Project/blob/06d1c0064237b72512ce6409a20ffd784b503ee8/Experimental_Design.png)
 
 ## Models
 
